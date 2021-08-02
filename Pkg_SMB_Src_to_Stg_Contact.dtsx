@@ -1,0 +1,3495 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/9/2021 11:20:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NS-DEV24"
+  DTS:CreatorName="VELOCITY\NBalusamy"
+  DTS:DTSID="{58286291-622F-4B2A-B68B-A8D06272EA93}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.167"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{00E3D763-8DE3-4813-A124-5F7134E1BC07}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_DB_AUDIT]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{86054CE2-D4F7-46EE-B306-8D9683671F4F}"
+      DTS:ObjectName="CM_DB_AUDIT">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnectionStringAudit]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::InitialCatalogAudit]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ServerName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sql-guidewire-eastus2-01.database.windows.net;Initial Catalog=DB_AUDIT_RECON;Authentication=&quot;Active Directory Integrated&quot;;Application Name=SSIS-Package1-{5EB11F2A-4933-46C9-B7A8-FE50616AB034}sql-guidewire-eastus2-01.database.windows.net.DB_AUDIT_RECON;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_DB_STAGING]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7972B376-50FF-4B36-B286-42DA607ADA06}"
+      DTS:ObjectName="CM_DB_STAGING">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnectionStringStaging]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::InitialCatalogStaging]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ServerName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=sql-guidewire-eastus2-01.database.windows.net;Initial Catalog=DB_ SMB_STAGING;Authentication=&quot;Active Directory Integrated&quot;;Application Name=&quot;SSIS-Package1-{4CFAE393-49AD-42D9-8738-BFA1D68B5D23}sql-guidewire-eastus2-01.database.windows.net.DB_  SMB_STAGING&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_FF_SRC_CONTACTS]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{89DCF5D5-4D93-4EA4-8DF6-70453001EAC5}"
+      DTS:ObjectName="CM_FF_SRC_CONTACTS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileNameContacts]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\corp.velocityrisk.com\Data\IT\Guidewire\PROCESS\BC_SMB_Contacts_Extract_2021-07-15_03-54-18.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="policy_number"
+              DTS:DTSID="{17D3B6F1-CA39-4640-9D74-5470BC00B765}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="name"
+              DTS:DTSID="{8CAAD56A-1A73-42D4-8D21-C476DA346680}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="dba_name"
+              DTS:DTSID="{ACF4C54B-B98C-46FD-8E48-EE3783D4FFD9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="type"
+              DTS:DTSID="{238849B6-EEB8-4197-85D4-DB9D66E4FEDE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="entity_type"
+              DTS:DTSID="{6896A90B-2EC8-4A9F-9705-07C90FD3C14F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="role"
+              DTS:DTSID="{BB69E8D9-1D0F-4E29-BC35-2030352EF151}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="fein"
+              DTS:DTSID="{4272FC89-3B36-4B07-8855-D1BB44A7285C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_line1"
+              DTS:DTSID="{27AF3091-E3E4-425C-996E-0499606264B0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_line2"
+              DTS:DTSID="{703CEE18-E5BA-47A7-BBD8-A66D7A6F0484}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_city"
+              DTS:DTSID="{B743CAF2-BAB7-4169-89FE-B1D8DCD77CEA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_state"
+              DTS:DTSID="{48ED0AFC-E222-4BBF-A8C5-D19EFBC6D282}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_zip"
+              DTS:DTSID="{8D671D1B-8A4C-477C-B91F-81EED74F3C2A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_county"
+              DTS:DTSID="{02BC585B-92E3-40E7-A97B-052833EC9185}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_country"
+              DTS:DTSID="{11ABA27B-A012-47C1-AB90-2AFC2F0BED2A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="address_type"
+              DTS:DTSID="{2AC8A671-F4E3-45E4-9568-09149050C7AA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email"
+              DTS:DTSID="{4D2AEB5B-C864-4EE5-908E-3DC4149FEFFF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email_type"
+              DTS:DTSID="{9EC393A3-544A-43FB-854A-506898F1CB26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="phone"
+              DTS:DTSID="{155F56A0-8EA5-4A1B-8523-EEFE1BF353D0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="phone_type"
+              DTS:DTSID="{C3D641F9-FF49-44EB-9177-69B9CF1E1180}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="BatchId"
+      DTS:ConfigurationVariable="\Package.Variables[User::BatchId].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{57B54013-78AB-4C72-847B-38E735F02967}"
+      DTS:ObjectName="BatchId" />
+    <DTS:Configuration
+      DTS:ConfigurationString="LoadDate"
+      DTS:ConfigurationVariable="\Package.Variables[User::LoadDate].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{A99443AB-63D1-404C-8148-9E64E0301FB4}"
+      DTS:ObjectName="LoadDate" />
+    <DTS:Configuration
+      DTS:ConfigurationString="FileNameContacts"
+      DTS:ConfigurationVariable="\Package.Variables[User::FileNameContacts].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF1591EF-7496-47EB-BA66-BAFEE36D056E}"
+      DTS:ObjectName="FileNameContacts" />
+    <DTS:Configuration
+      DTS:ConfigurationString="ConnectionStringStaging"
+      DTS:ConfigurationVariable="\Package.Variables[User::ConnectionStringStaging].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1DE549A-977E-4B5D-ABFD-9DD07C1C5B85}"
+      DTS:ObjectName="ConnectionStringStaging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="ConnectionStringAudit"
+      DTS:ConfigurationVariable="\Package.Variables[User::ConnectionStringAudit].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{0BC937E4-84AE-46D0-AB2F-14A5E451603B}"
+      DTS:ObjectName="ConnectionStringAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="InitialCatalogStaging"
+      DTS:ConfigurationVariable="\Package.Variables[User::InitialCatalogStaging].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{493C2A9B-8962-4E99-9DA0-6E87585C3FCF}"
+      DTS:ObjectName="InitialCatalogStaging" />
+    <DTS:Configuration
+      DTS:ConfigurationString="InitialCatalogAudit"
+      DTS:ConfigurationVariable="\Package.Variables[User::InitialCatalogAudit].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF36B277-563C-42A9-883C-09855D5493AF}"
+      DTS:ObjectName="InitialCatalogAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="ServerName"
+      DTS:ConfigurationVariable="\Package.Variables[User::ServerName].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0F06673-66B2-4E42-92BF-F9F928D08CF4}"
+      DTS:ObjectName="ServerName" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{732243B2-9AC2-4796-BD90-CD0386EC9018}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchId">
+      <DTS:VariableValue
+        DTS:DataType="3">1081</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{26CBA1F7-7BB3-4550-BB78-DA9BE4CDEE71}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnectionStringAudit">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=sql-guidewire-eastus2-01.database.windows.net;Initial Catalog=DB_AUDIT_RECON;Authentication="Active Directory Integrated";Application Name=SSIS-Package1-{5EB11F2A-4933-46C9-B7A8-FE50616AB034}sql-guidewire-eastus2-01.database.windows.net.DB_AUDIT_RECON;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{025579C0-A699-4396-BBCA-ED2A12B6A170}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnectionStringStaging">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=sql-guidewire-eastus2-01.database.windows.net;Initial Catalog="DB_ SMB_STAGING";Authentication="Active Directory Integrated";Application Name="SSIS-Package1-{4CFAE393-49AD-42D9-8738-BFA1D68B5D23}sql-guidewire-eastus2-01.database.windows.net.DB_  SMB_STAGING";</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EBEF7EB-89A2-4580-8F01-A8699DF3E86D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameContacts">
+      <DTS:VariableValue
+        DTS:DataType="8">\\corp.velocityrisk.com\Data\IT\Guidewire\PROCESS\BC_SMB_Contacts_Extract_2021-07-15_03-54-18.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{17A2EEFB-5E76-469D-BDF1-D93895C47DC6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InitialCatalogAudit">
+      <DTS:VariableValue
+        DTS:DataType="8">DB_AUDIT_RECON</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7265AD1F-9A17-4DAF-8F60-2F5857336F2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InitialCatalogStaging">
+      <DTS:VariableValue
+        DTS:DataType="8">DB_ SMB_STAGING</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0259745-E8CD-41C5-91EA-A932DF78E4D8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoadDate">
+      <DTS:VariableValue
+        DTS:DataType="7">7/9/2021 11:37:56 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EEF8465B-C75D-4AB1-90C7-25377151849B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RecordCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C2341643-E69A-4786-B830-6E3DEA4DEE9D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerName">
+      <DTS:VariableValue
+        DTS:DataType="8">sql-guidewire-eastus2-01.database.windows.net</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Src_to_Stg"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FC31320F-6317-44BE-B476-92DF6724B4B3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Src_to_Stg"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_Src_to_Stg.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{425038DB-BCC1-4DF9-B5D5-7EEE2B41E3F0}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{51548460-FBC8-4C3D-9A86-631183A2F89D}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_Src_to_Stg.EventHandlers[OnError]\EST_Update_Audit_Tbl"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0ACF1164-8E54-4DD5-8AE0-7601A5FC7D6E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EST_Update_Audit_Tbl"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{86054CE2-D4F7-46EE-B306-8D9683671F4F}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].[MASTER_AUDIT]&#xA;   SET [End_Time] = (SELECT GETDATE())&#xA;      ,[Elapsed_Time] =  (SELECT FORMAT(CONVERT(TIME,GETDATE()-Start_Time),N'hh\:mm\:ss') AS elapsed FROM dbo.MASTER_AUDIT WHERE Batch_Id IN (@batchid))&#xA;      ,[Records_Count]  =0&#xA;      ,[Error_Count] = 0&#xA;      ,[Status] = 'FAILURE'&#xA; WHERE [Batch_Id] IN (@batchid1)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@batchid"
+                    SQLTask:DtsVariableName="User::BatchId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="11"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@batchid1"
+                    SQLTask:DtsVariableName="User::BatchId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="11"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Src_to_Stg\AD_Error_Log"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="AD_Error_Log"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."ERROR_LOG"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Src_to_Stg\AD_Error_Log.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_DB_AUDIT]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_DB_AUDIT]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Batch_Id]"
+                      cachedDataType="i4"
+                      cachedName="Batch_Id"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Batch_Id]"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Batch_Id]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Load_Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Load_Date"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Load_Date]"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Load_Date]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[LOB_Desc]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="LOB_Desc"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[LOB_Desc]"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[LOB_Desc]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Package_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="31"
+                      cachedName="Package_Name"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Package_Name]"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Package_Name]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Source_Table]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="Source_Table"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Source_Table]"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Source_Table]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Destination_Table]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="Destination_Table"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Destination_Table]"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Destination_Table]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Code]"
+                      lineageId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[ErrorDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Description]"
+                      lineageId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0].Columns[ErrorDescription]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].Columns[Error_Recordes]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Error_Recordes"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Records]"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Error_Recordes]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Id]"
+                      dataType="i4"
+                      name="Error_Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Batch_Id]"
+                      dataType="i4"
+                      name="Batch_Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp"
+                      name="Load_Date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[LOB_Desc]"
+                      dataType="wstr"
+                      length="10"
+                      name="LOB_Desc" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Package_Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Package_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Source_Table]"
+                      dataType="wstr"
+                      length="100"
+                      name="Source_Table" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Destination_Table]"
+                      dataType="wstr"
+                      length="100"
+                      name="Destination_Table" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Code]"
+                      dataType="i8"
+                      name="Error_Code" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Error_Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input].ExternalColumns[Error_Records]"
+                      dataType="wstr"
+                      length="100"
+                      name="Error_Records" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\AD_Error_Log.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\AD_Error_Log.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_Error_Log.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\AD_Error_Log.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Src_to_Stg\AD_STG_contact"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="AD_STG_contact"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."STG_CONTACT"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Src_to_Stg\AD_STG_contact.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_DB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_DB_STAGING]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[policy_number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="policy_number"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[policy_number]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[policy_number]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[name]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[dba_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="dba_name"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[dba_name]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[dba_name]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[type]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[entity_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="entity_type"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[entity_type]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[entity_type]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[role]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="role"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[role]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[role]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[fein]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="fein"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[fein]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[fein]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_line1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="address_line1"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_line1]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line1]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_line2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="address_line2"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_line2]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line2]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_city]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_city"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_city]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_city]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_state]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_state"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_state]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_state]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_zip]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_zip"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_zip]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_zip]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_county]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_county"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_county]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_county]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_type"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_type]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_type]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[email]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[email_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="email_type"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[email_type]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email_type]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[phone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="phone"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[phone]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[phone_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="phone_type"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[phone_type]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone_type]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[address_country]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="address_country"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_country]"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_country]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[Batch_Id]"
+                      cachedDataType="i4"
+                      cachedName="Batch_Id"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[Batch_Id]"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Batch_Id]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].Columns[Load_Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Load_Date"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[Load_Date]"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Load_Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[Contact_Id]"
+                      dataType="i4"
+                      name="Contact_Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[Batch_Id]"
+                      dataType="i4"
+                      name="Batch_Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp"
+                      name="Load_Date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[policy_number]"
+                      dataType="wstr"
+                      length="50"
+                      name="policy_number" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[dba_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="dba_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[entity_type]"
+                      dataType="wstr"
+                      length="50"
+                      name="entity_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[role]"
+                      dataType="wstr"
+                      length="50"
+                      name="role" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[fein]"
+                      dataType="wstr"
+                      length="50"
+                      name="fein" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_line1]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_line1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_line2]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_line2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_city]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_city" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_state]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_state" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_zip]"
+                      dataType="wstr"
+                      length="50"
+                      name="address_zip" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_county]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_county" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_type]"
+                      dataType="wstr"
+                      length="50"
+                      name="address_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[email_type]"
+                      dataType="wstr"
+                      length="50"
+                      name="email_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[phone]"
+                      dataType="wstr"
+                      length="50"
+                      name="phone" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[phone_type]"
+                      dataType="wstr"
+                      length="50"
+                      name="phone_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input].ExternalColumns[address_country]"
+                      dataType="wstr"
+                      length="255"
+                      name="address_country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Src_to_Stg\DC_Error_Fields"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_Error_Fields"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Inputs[Derived Column Input].Columns[policy_number]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="policy_number"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[policy_number]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\DC_Error_Fields.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Error_Recordes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Error_Recordes]"
+                      name="Error_Recordes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[policy_number]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">policy_number</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[LOB_Desc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[LOB_Desc]"
+                      name="LOB_Desc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"SMB"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"SMB"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Package_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="31"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Package_Name]"
+                      name="Package_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Pkg_SMB_Src_to_Stg_Contact.dtsx"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Pkg_SMB_Src_to_Stg_Contact.dtsx"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Source_Table]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="14"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Source_Table]"
+                      name="Source_Table"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"BC_SMB_Contact"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"BC_SMB_Contact"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Destination_Table]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="11"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output].Columns[Destination_Table]"
+                      name="Destination_Table"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"STG_CONTACT"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"STG_CONTACT"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\DC_Error_Fields.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Src_to_Stg\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Src_to_Stg\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Batch_Id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Batch_Id]"
+                      name="Batch_Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::BatchId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::BatchId]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Load_Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output].Columns[Load_Date]"
+                      name="Load_Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Src_to_Stg\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Src_to_Stg\Flat File Source 1"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source 1"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Src_to_Stg\Flat File Source 1.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_FF_SRC_CONTACTS]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_FF_SRC_CONTACTS]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[policy_number]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[policy_number]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[policy_number]"
+                      name="policy_number"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[dba_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[dba_name]"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[dba_name]"
+                      name="dba_name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[type]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[type]"
+                      name="type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[entity_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[entity_type]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[entity_type]"
+                      name="entity_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[role]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[role]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[role]"
+                      name="role"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[fein]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[fein]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[fein]"
+                      name="fein"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_line1]"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line1]"
+                      name="address_line1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_line2]"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_line2]"
+                      name="address_line2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_city]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_city]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_city]"
+                      name="address_city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_state]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_state]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_state]"
+                      name="address_state"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_zip]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_zip]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_zip]"
+                      name="address_zip"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_county]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_county]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_county]"
+                      name="address_county"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_country]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_country]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_country]"
+                      name="address_country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_type]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[address_type]"
+                      name="address_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[email_type]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[email_type]"
+                      name="email_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[phone]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone]"
+                      name="phone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[phone_type]"
+                      length="50"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].Columns[phone_type]"
+                      name="phone_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[policy_number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="policy_number" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[dba_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="dba_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[entity_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="entity_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[role]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="role" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[fein]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="fein" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_line1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="address_line1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_line2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="address_line2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_city" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_state" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_zip" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_county]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_county" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_country" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[address_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="address_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[email_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="email_type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="phone" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output].ExternalColumns[phone_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="phone_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Src_to_Stg\Script Component"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Script Component"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+
+public class ScriptMain :      // C#
+    UserComponent
+{
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        Row.ErrorDescription = this.ComponentMetaData.GetErrorDescription(Row.ErrorCode);
+
+        var componentMetaData130 = this.ComponentMetaData as IDTSComponentMetaData130;
+        if (componentMetaData130 != null)
+        {
+            // 0 means no specific column is identified by ErrorColumn, this time.
+            if (Row.ErrorColumn == 0)
+            {
+                Row.ColumnName = "Check the row for a violation of a foreign key constraint.";
+            }
+            // -1 means you are using Table Lock for a Memory Optimised destination table which is not supported.
+            else if (Row.ErrorColumn == -1)
+            {
+                Row.ColumnName = "Table lock is not compatible with Memory Optimised tables.";
+            }
+            else
+            {
+                Row.ColumnName = componentMetaData130.GetIdentificationStringByID(Row.ErrorColumn);
+            }
+        }
+    }
+}
+#region Help:  Using Integration Services variables and parameters
+/* To use a variable in this script, first ensure that the variable has been added to
+ * either the list contained in the ReadOnlyVariables property or the list contained in
+ * the ReadWriteVariables property of this script component, according to whether or not your
+ * code needs to write into the variable.  To do so, save this script, close this instance of
+ * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+ * Script Transformation Editor window.
+ * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+ *
+ * Example of reading from a variable or parameter:
+ *  DateTime startTime = Variables.MyStartTime;
+ *
+ * Example of writing to a variable:
+ *  Variables.myStringVariable = "new value";
+ */
+#endregion
+
+#region Help:  Using Integration Services Connnection Managers
+/* Some types of connection managers can be used in this script component.  See the help topic
+ * "Working with Connection Managers Programatically" for details.
+ *
+ * To use a connection manager in this script, first ensure that the connection manager has
+ * been added to either the list of connection managers on the Connection Managers page of the
+ * script component editor.  To add the connection manager, save this script, close this instance of
+ * Visual Studio, and add the Connection Manager to the list.
+ *
+ * If the component needs to hold a connection open while processing rows, override the
+ * AcquireConnections and ReleaseConnections methods.
+ * 
+ * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+ *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+ *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+ *
+ * Example of using a File connection manager to acquire a file path:
+ *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+ *  string filePath = (string)rawConnection;
+ *
+ * Example of releasing a connection manager:
+ *  Connections.SalesDB.ReleaseConnection(rawConnection);
+ */
+#endregion
+
+#region Help:  Firing Integration Services Events
+/* This script component can fire events.
+ *
+ * Example of firing an error event:
+ *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+ *
+ * Example of firing an information event:
+ *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+ *
+ * Example of firing a warning event:
+ *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+ */
+#endregion
+
+/// <summary>
+/// This method is called once, before rows begin to be processed in the data flow.
+///
+/// You can remove this method if you don't need to do anything here.
+/// </summary>
+
+
+
+
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Int32 ErrorCode
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[0]);
+        }
+    }
+    public bool ErrorCode_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public Int32 ErrorColumn
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[1]);
+        }
+    }
+    public bool ErrorColumn_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String ErrorDescription
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool ErrorDescription_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ColumnName
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool ColumnName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Settings.get_Default():SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Sett" +
+    "ings")]
+
+namespace SC_d8073724f09b4c18b6a38df71961c4e2.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_d8073724f09b4c18b6a38df71961c4e2.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_d8073724f09b4c18b6a38df71961c4e2.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_d8073724f09b4c18b6a38df71961c4e2</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_d8073724f09b4c18b6a38df71961c4e2</msb:DisplayName>
+    <msb:ProjectId>{AE27914A-B932-4283-9809-92A52DEB4237}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_d8073724f09b4c18b6a38df71961c4e2.csproj" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_d8073724f09b4c18b6a38df71961c4e2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_d8073724f09b4c18b6a38df71961c4e2")]
+[assembly: AssemblyCopyright("Copyright @  2021")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_d8073724f09b4c18b6a38df71961c4e2.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8c26a7ba-91ca-4edf-b769-75c1e4dc554f}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_d8073724f09b4c18b6a38df71961c4e2</RootNamespace>
+    <AssemblyName>SC_9AD5A9616DA9448C9DD3FE6FCFE37DBF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_d8073724f09b4c18b6a38df71961c4e2" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_9AD5A9616DA9448C9DD3FE6FCFE37DBF.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAF/W/2AAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAsjQA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGA0AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAuBQAAAAgAAAAFgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAYAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACU
+NAAAAAAAAEgAAAACAAUAOCIAAHARAAABAAAAAAAAAKgzAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAwBiAAAAAQAAEQMCKBAAAAoDbwQAAAZvEQAACm8IAAAG
+AigQAAAKdQ4AAAEKBiw7A28GAAAGLQwDcgEAAHBvCgAABioDbwYAAAYVMwwDcncAAHBvCgAABioD
+BgNvBgAABm8SAAAKbwoAAAYqHgIoDgAABioqAgMEBSgTAAAKKlICexQAAAoCexUAAAoWlG8WAAAK
+KiICFigXAAAKKlICexQAAAoCexUAAAoXlG8WAAAKKiICFygXAAAKKiYCGAMoGAAACipaAywIAhgo
+GQAACipy7QAAcHMaAAAKeiYCGQMoGAAACipaAywIAhkoGQAACipy7QAAcHMaAAAKeh4CKBsAAAoq
+HgIoHAAACip+AigdAAAKAgJzEgAABn0BAAAEAgJzEwAABn0CAAAEKpIEcooBAHAabx4AAAosFQIF
+AgMoHwAACg4EcwMAAAZvEAAABipKKwcCA28RAAAGA28MAAAGLfEqBio6AiggAAAKAgN9AwAABCo6
+AiggAAAKAgN9BAAABCoeAiggAAAKKq5+BQAABC0ecpoBAHDQBwAAAighAAAKbyIAAApzIwAACoAF
+AAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4HAAAEKh4CKCQAAAoqLnMZAAAGgAcAAAQqAAAAQlNK
+QgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA6AUAACN+AABUBgAASAcAACNTdHJpbmdz
+AAAAAJwNAAAMAgAAI1VTAKgPAAAQAAAAI0dVSUQAAAC4DwAAuAEAACNCbG9iAAAAAAAAAAIAAAFX
+FaIBCQEAAAD6ATMAFgAAAQAAACEAAAAIAAAABwAAABoAAAARAAAAJAAAABAAAAABAAAAAwAAAAsA
+AAAMAAAAAQAAAAUAAAABAAAAAABdAwEAAAAAAAYAbgKABQYAAgOABQYAugFtBQ8A9AUAAAYA5wFM
+BAYAUQJMBAYAMgJMBAYA6QJMBAYAjgJMBAYApwJMBAYA/gFMBAYAGQImAwoAwgIHAQ4AGgA3BQoA
+FgUHARIABwUHAQoAvgQHAQoAugYHAQYAfQb0AwYAnQFtBQYAJwWgBQYAsgQ3BBYAbQFHAxYAzgFH
+AxYAVQEiBAYAggGABQ4AAQA3BQYAXgT0AwYAQAP0AwYAoQT0AwYAKAH0AwYAygD0AwYAPwdMBAAA
+AAA8AAAAAAABAAEAAQAQAAcEAAAQAAEAAQABABAA+gQAAD0AAQADAAEAEACcBgAASQABAA4AAQAQ
+AHEGAABNAAMAEgABABAAMgYAAE0ABAATAAAAEACnBQMGTQAFABQAAAEQAGEGAwZlAAcAGAAGAHEG
+hQAGADIGiQABAKoGjQABAKoGjQARAPsDkQARAEUBlQARAKwAmQBQIAAAAADGABwHnQABAL4gAAAA
+AIYYYAUGAAIAxiAAAAAAhhhgBSoAAgDRIAAAAACGCLwAowAFAOYgAAAAAIYIhQNMAAUA7yAAAAAA
+hggSBKMABQAEIQAAAACGCLADTAAFAA0hAAAAAIYIeAQQAAUAFyEAAAAAhgjHA6cABgAuIQAAAACG
+CO4AEAAHADghAAAAAIYImgOnAAgATyEAAAAAhgAzB0wACQBXIQAAAACGAIQGTAAJAF8hAAAAAIYY
+YAUGAAkAfyEAAAAAxgAPB6wACQCkIQAAAADGAQgHnQANALchAAAAAMYBHAedAA4AuSEAAAAAhhhg
+BbYADwDIIQAAAACGGGAFtgAQANchAAAAAIMYYAUGABEA3yEAAAAAkwgjBbwAEQALIgAAAACTCC0B
+wQARABIiAAAAAJMIOQHGABEAGiIAAAAAlgiQBswAEgAhIgAAAACGGGAFBgASACkiAAAAAJEYZgXR
+ABIAAAABADcHAAABABwFAAACADwGAAADAMwEAAABACADAAABACADAAABACADAAABACADAAABAEUA
+AAACAP0AAAADABwFAAAEAMwEAAABABwFAAABADcHAAABAMAGAAABAMAGAAABACADCQBgBQEAEQBg
+BQYAGQBgBQoAKQBgBRAAMQBgBRAAOQBgBRAAQQBgBRAASQBgBRAAUQBgBRAAWQBgBRAAYQBgBRAA
+aQBgBQYAoQBgBQYAwQBgBRUA0QBgBQYAkQCNACAA2QCNBCUAcQBNACUAeQBgBSoAeQAcBTQAeQA8
+BjgAgQAzADwAeQDcA0EAeQDrA0YAeQDjAwEA4QBgBRAAeQAzB0wAeQCEBkwAkQBgBQYA6QBqBlAA
+kQBQBlcAmQBgBQYA+QDcAF0A+QA7B2UAqQBgBWsAyQBgBQYALgALAPAALgATAPkALgAbABgBLgAj
+ACEBLgArAEoBLgAzAEoBLgA7AEoBLgBDACEBLgBLAFABLgBTAEoBLgBbAGcBQwBjALEB4QB7ALEB
+4wBrALEBKQFzABgBSQFzABgBGwADAAEABwAJAAgACwAAAMAA1QAAAIkD2QAAABYE1QAAALQD2QAA
+AJAE3QAAAMsD2QAAAPIA3QAAAJ4D2QAAACcF4QAAAE0B5gAAAJQG6wACAAQAAwACAAUABQACAAYA
+BwACAAcACQABAAgACwABAAkADQABAAoADwABAAsAEQACABUAEwACABYAFQABABcAFQACABgAFwAE
+gAAAAQAAAAAAAAAAAAAAAABpAAAABAAAAAAAAAAAAAAAcwCjAAAAAAAOAAAAAAAAAAAAAAB8AMoG
+AAAAAA4AAAAAAAAAAAAAAHwA1gQAAAAADgAAAAAAAAAAAAAAfADnBgAAAAAEAAAAAAAAAAAAAABz
+APQDAAAAAAAAAAABAAAAsQUAAAAAAElEVFNDb21wb25lbnRNZXRhRGF0YTEwMABJRFRTQ29tcG9u
+ZW50TWV0YURhdGExMzAAR2V0SW50MzIAPE1vZHVsZT4ASW5wdXRJRABHZXRJZGVudGlmaWNhdGlv
+blN0cmluZ0J5SUQAU0NfOUFENUE5NjE2REE5NDQ4QzlERDNGRTZGQ0ZFMzdEQkYAZ2V0X0NvbXBv
+bmVudE1ldGFEYXRhAG1zY29ybGliAGRlZmF1bHRJbnN0YW5jZQBnZXRfRXJyb3JDb2RlAFJ1bnRp
+bWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAHNldF9Db2x1bW5OYW1lAElucHV0TmFtZQBN
+aWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBUeXBlAGdldF9DdWx0dXJlAHNldF9DdWx0
+dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBFZGl0b3JCcm93c2Fi
+bGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0
+cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2Vt
+Ymx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3
+b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2Ny
+aXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQ
+cm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRDb21w
+b25lbnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1l
+Q29tcGF0aWJpbGl0eUF0dHJpYnV0ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFN0
+cmluZwBTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU0NfOUFENUE5NjE2REE5NDQ4QzlERDNGRTZGQ0ZF
+MzdEQkYuZGxsAGdldF9FcnJvckNvZGVfSXNOdWxsAHNldF9Db2x1bW5OYW1lX0lzTnVsbABnZXRf
+RXJyb3JDb2x1bW5fSXNOdWxsAHNldF9FcnJvckRlc2NyaXB0aW9uX0lzTnVsbABTZXROdWxsAHNl
+dF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAGdldF9FcnJvckNvbHVtbgBTeXN0
+ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBJ
+bnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAHNldF9FcnJvckRlc2NyaXB0aW9uAEdldEVycm9yRGVz
+Y3JpcHRpb24AU3RyaW5nQ29tcGFyaXNvbgBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1
+dE1hcABNaWNyb3NvZnQuU3FsU2VydmVyLkRUU1BpcGVsaW5lV3JhcABJbnB1dDBCdWZmZXIAUGlw
+ZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIATWljcm9zb2Z0LlNx
+bFNlcnZlci5EdHMuUGlwZWxpbmUuV3JhcHBlcgAuY3RvcgAuY2N0b3IAU3lzdGVtLkRpYWdub3N0
+aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTQ19k
+ODA3MzcyNGYwOWI0YzE4YjZhMzhkZjcxOTYxYzRlMi5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNv
+dXJjZXMARGVidWdnaW5nTW9kZXMAU0NfZDgwNzM3MjRmMDliNGMxOGI2YTM4ZGY3MTk2MWM0ZTIu
+UHJvcGVydGllcwBWYXJpYWJsZXMAQnVmZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVz
+AFNldHRpbmdzAEVxdWFscwBDb25uZWN0aW9ucwBPYmplY3QARW5kT2ZSb3dzZXQAZ2V0X0RlZmF1
+bHQAVXNlckNvbXBvbmVudABQYXJlbnRDb21wb25lbnQAU2NyaXB0Q29tcG9uZW50AE1pY3Jvc29m
+dC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9zb2Z0LlNxbFNlcnZlci5QaXBlbGluZUhvc3QASW5w
+dXQwX1Byb2Nlc3NJbnB1dABJbnB1dDBfUHJvY2Vzc0lucHV0Um93AE5leHRSb3cAZ2V0X0Fzc2Vt
+Ymx5AAB1QwBoAGUAYwBrACAAdABoAGUAIAByAG8AdwAgAGYAbwByACAAYQAgAHYAaQBvAGwAYQB0
+AGkAbwBuACAAbwBmACAAYQAgAGYAbwByAGUAaQBnAG4AIABrAGUAeQAgAGMAbwBuAHMAdAByAGEA
+aQBuAHQALgAAdVQAYQBiAGwAZQAgAGwAbwBjAGsAIABpAHMAIABuAG8AdAAgAGMAbwBtAHAAYQB0
+AGkAYgBsAGUAIAB3AGkAdABoACAATQBlAG0AbwByAHkAIABPAHAAdABpAG0AaQBzAGUAZAAgAHQA
+YQBiAGwAZQBzAC4AAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkAIABjAGEAbgBuAG8A
+dAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAgAGEAIAB2
+AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEAZAAuAAAP
+SQBuAHAAdQB0ACAAMAAAcVMAQwBfAGQAOAAwADcAMwA3ADIANABmADAAOQBiADQAYwAxADgAYgA2
+AGEAMwA4AGQAZgA3ADEAOQA2ADEAYwA0AGUAMgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUA
+cwBvAHUAcgBjAGUAcwAAxvVHHO+B0E68R3oABx7xUgAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQER
+XQQHARI5BCAAEm0EIAEOCAkgAwESQR0IEkUDBhJBAwYdCAQgAQgIBCABAggFIAIBCBwDIAACBiAC
+Ag4ReQUgAR0ICAcAARJ9EYCBBSAAEoCFByACAQ4SgIUIt3pcVhk04IkIiYRdzYCAzJEDBhIUAwYS
+GAMGEkkDBhJVAwYSWQMGEiAFIAEBEgwDIAAIBCABAQIJIAQBCA4SQRJFBSABARJJBAAAElUEAAAS
+WQUAAQESWQQAABIgAwAAAQMoAAgDKAACAygADgQIABJVBAgAElkECAASIAgBAAgAAAAAAB4BAAEA
+VAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAAoAQAjU0NfZDgwNzM3MjRmMDliNGMx
+OGI2YTM4ZGY3MTk2MWM0ZTIAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAyMQAASQEAGi5ORVRG
+cmFtZXdvcmssVmVyc2lvbj12NC41AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1l
+d29yayA0LjUEAQAAAAAAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNl
+UmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1Ymxp
+Y0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3Vy
+Y2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAIg0AAAAAAAAAAAAAKI0AAAAIAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAACUNAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAg
+ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
+AAAAWEAAAOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
+AAC9BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
+AAAAAAAAsARMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAw
+ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
+eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
+AFMAQwBfAGQAOAAwADcAMwA3ADIANABmADAAOQBiADQAYwAxADgAYgA2AGEAMwA4AGQAZgA3ADEA
+OQA2ADEAYwA0AGUAMgAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAw
+AC4AMAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8AOQBBAEQANQBBADkA
+NgAxADYARABBADkANAA0ADgAQwA5AEQARAAzAEYARQA2AEYAQwBGAEUAMwA3AEQAQgBGAC4AZABs
+AGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgA
+dAAgAEAAIAAgADIAMAAyADEAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAA
+AAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAEMAXwA5AEEA
+RAA1AEEAOQA2ADEANgBEAEEAOQA0ADQAOABDADkARABEADMARgBFADYARgBDAEYARQAzADcARABC
+AEYALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBDAF8AZAA4ADAA
+NwAzADcAMgA0AGYAMAA5AGIANABjADEAOABiADYAYQAzADgAZABmADcAMQA5ADYAMQBjADQAZQAy
+AAAANAAIAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgA
+CAABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAAC0NAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_9ad5a9616da9448c9dd3fe6fcfe37dbf</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">E3</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_Src_to_Stg\Script Component.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\Script Component.Inputs[Input 0].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFT_Src_to_Stg\Script Component.Inputs[Input 0].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\DFT_Src_to_Stg\Script Component.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0].Columns[ErrorDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                    <outputColumn
+                      refId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0].Columns[ColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0].Columns[ColumnName]"
+                      name="ColumnName" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Src_to_Stg.Paths[ADO NET Destination Error Output]"
+              endId="Package\DFT_Src_to_Stg\Script Component.Inputs[Input 0]"
+              name="ADO NET Destination Error Output"
+              startId="Package\DFT_Src_to_Stg\AD_STG_contact.Outputs[ADO NET Destination Error Output]" />
+            <path
+              refId="Package\DFT_Src_to_Stg.Paths[Derived Column Output]"
+              endId="Package\DFT_Src_to_Stg\AD_Error_Log.Inputs[ADO NET Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Src_to_Stg\DC_Error_Fields.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Src_to_Stg.Paths[Derived Column Output1]"
+              endId="Package\DFT_Src_to_Stg\AD_STG_contact.Inputs[ADO NET Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Src_to_Stg\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Src_to_Stg.Paths[Flat File Source Output]"
+              endId="Package\DFT_Src_to_Stg\Derived Column.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\DFT_Src_to_Stg\Flat File Source 1.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\DFT_Src_to_Stg.Paths[Output 0]"
+              endId="Package\DFT_Src_to_Stg\DC_Error_Fields.Inputs[Derived Column Input]"
+              name="Output 0"
+              startId="Package\DFT_Src_to_Stg\Script Component.Outputs[Output 0]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Get_Batch_Id"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{6FC431EB-D946-42C5-A1BE-E3611F439F1D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Get_Batch_Id"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{86054CE2-D4F7-46EE-B306-8D9683671F4F}"
+          SQLTask:SqlStatementSource="SELECT ISNULL(MAX(Batch_Id),0)+1 Batch_Id FROM [dbo].[MASTER_AUDIT]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchId" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Get_Load_date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E8BCF4FA-8DAD-4A3E-8173-7249CB88B35D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Get_Load_date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7972B376-50FF-4B36-B286-42DA607ADA06}"
+          SQLTask:SqlStatementSource="SELECT CONVERT(DATE,GETDATE()) AS Load_Date"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::LoadDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Get_record_count"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{504A2663-1ACA-496D-BF1B-ABEBB7F89AD0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Get_record_count"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7972B376-50FF-4B36-B286-42DA607ADA06}"
+          SQLTask:SqlStatementSource="SELECT COUNT(*) FROM  [dbo].[STG_CONTACT] WHERE [Batch_Id] IN (@batchid)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::RecordCount" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@batchid"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Insert_Audit_Tbl"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6CDC3FE4-BA50-4F62-89A8-FA665CFD931C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Insert_Audit_Tbl"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{86054CE2-D4F7-46EE-B306-8D9683671F4F}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[MASTER_AUDIT]&#xA;           ([Batch_Id]&#xA;           ,[Load_Date]&#xA;           ,[LOB_Desc]&#xA;           ,[Package_Name]&#xA;           ,[Source_Table]&#xA;           ,[Destination_Table]&#xA;           ,[Start_Time]&#xA;           ,[End_Time]&#xA;           ,[Elapsed_Time]&#xA;           ,[Records_Count]&#xA;           ,[Error_Count]&#xA;           ,[Status])&#xA;     VALUES&#xA;           (@batchid&#xA;            ,@loaddate&#xA;           ,'SMB'&#xA;           ,'Pkg_SMB_Src_to_Stg_Contact.dtsx'&#xA;           ,'BC_SMB_Contact'&#xA;           ,'STG_CONTACT'&#xA;           ,(SELECT GETDATE())&#xA;           ,''&#xA;           ,''&#xA;           ,''&#xA;           ,''&#xA;           ,'')&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@batchid"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@loaddate"
+            SQLTask:DtsVariableName="User::LoadDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="6"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Truncate_stg_Tbl"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{006B33BC-1A33-4CA2-9219-DEAB72891B54}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Truncate_stg_Tbl"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7972B376-50FF-4B36-B286-42DA607ADA06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[STG_CONTACT]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_Update_Audit_Tbl"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2E104918-B13C-4461-8B19-10714B3E969E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_Update_Audit_Tbl"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{86054CE2-D4F7-46EE-B306-8D9683671F4F}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[MASTER_AUDIT]&#xA;   SET [End_Time] = (SELECT GETDATE())&#xA;      ,[Elapsed_Time] = (SELECT FORMAT(CONVERT(TIME,GETDATE()-Start_Time),N'hh\:mm\:ss') AS elapsed FROM dbo.MASTER_AUDIT WHERE Batch_Id IN (@batchid)and Source_Table='BC_SMB_Contact')&#xA;      ,[Records_Count]  =@recordcount&#xA;      ,[Error_Count] =  (SELECT COUNT(*) FROM  [dbo].error_log WHERE [Batch_Id] IN (@batchid1)and Source_Table='BC_SMB_Contact')&#xA;      ,[Status] = 'SUCCESS'&#xA; WHERE [Batch_Id] IN (@batchid2)and Source_Table='BC_SMB_Contact'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@batchid"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@recordcount"
+            SQLTask:DtsVariableName="User::RecordCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@batchid1"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@batchid2"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CB80A354-70F2-4D1D-86D5-4C9681F1C575}"
+      DTS:From="Package\EST_Get_Batch_Id"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\EST_Get_Load_date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C00C046A-3E23-4E64-9A18-0251991CB13D}"
+      DTS:From="Package\EST_Get_Load_date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EST_Insert_Audit_Tbl" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED4279A2-41DD-4E2E-84FB-D1820371611E}"
+      DTS:From="Package\EST_Insert_Audit_Tbl"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\EST_Truncate_stg_Tbl" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9BC306A9-992E-4958-A319-7E7CFFF6D4D7}"
+      DTS:From="Package\EST_Truncate_stg_Tbl"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DFT_Src_to_Stg" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B578DFB5-6817-45DF-8953-E1BF6836FB17}"
+      DTS:From="Package\DFT_Src_to_Stg"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\EST_Get_record_count" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{16036243-A0E8-47B9-8E3E-5AE0BCD7CC2A}"
+      DTS:From="Package\EST_Get_record_count"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\EST_Update_Audit_Tbl" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{0586A7C4-1EA2-43FF-A408-466755B98BA4}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{5631F64F-A8D2-45B3-9863-455C7627BBE2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg"
+          TopLeft="171.874997438863,262.263159556072" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\EST_Get_Batch_Id"
+          TopLeft="148.749997783452,2.05263161758306" />
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\EST_Get_Load_date"
+          TopLeft="149.374997774139,72.5263171546017" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\EST_Get_record_count"
+          TopLeft="170.62499745749,328.94737401035" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\EST_Insert_Audit_Tbl"
+          TopLeft="158.749997634441,135.894738722376" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\EST_Truncate_stg_Tbl"
+          TopLeft="162.499997578561,192.070177447653" />
+        <NodeLayout
+          Size="192,42.6666666666667"
+          Id="Package\EST_Update_Audit_Tbl"
+          TopLeft="155.624997681007,404.8070240089" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="237.062497778796,44.7192982842497">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.807018870352"
+              Start="0,0"
+              End="0,20.307018870352">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.307018870352" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="149.374997774139,93.859650487935">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.37499986030144,57.5906437899965"
+              Start="0,0"
+              End="1.87499986030144,57.5906437899965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,53.5906437899965" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,53.5906437899965"
+                    Point2="-22.5,57.5906437899965"
+                    Point3="-18.5,57.5906437899965" />
+                  <mssgle:LineSegment
+                    End="1.87499986030144,57.5906437899965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="158.749997634441,163.005849833487">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="3.74999994412087,50.397660947499"
+              Start="0,0"
+              End="-3.75000005587913,50.397660947499">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,46.397660947499" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,46.397660947499"
+                    Point2="-22.5,50.397660947499"
+                    Point3="-18.5,50.397660947499" />
+                  <mssgle:LineSegment
+                    End="-3.75000005587913,50.397660947499" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="248.854164175379,234.736844114319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.5263154417524"
+              Start="0,0"
+              End="0,20.0263154417524">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0263154417524" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="252.916664114843,304.929826222739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.0175477876118"
+              Start="0,0"
+              End="0,16.5175477876118">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5175477876118" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="253.124997569248,371.614040677017">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.1929833318828"
+              Start="0,0"
+              End="0,25.6929833318828">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6929833318828" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Src_to_Stg">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\AD_STG_contact"
+          TopLeft="59.9999991059304,218.964915925336" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\Derived Column"
+          TopLeft="197.499997057021,114.947370584652" />
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\Script Component"
+          TopLeft="419.374993750826,155.50877205861" />
+        <NodeLayout
+          Size="148,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\AD_Error_Log"
+          TopLeft="348.74999480322,298.473688962717" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\DC_Error_Fields"
+          TopLeft="511.874992372468,238.78947817883" />
+        <EdgeLayout
+          Id="Package\DFT_Src_to_Stg.Paths[Output 0]"
+          TopLeft="502.041660417493,198.175438725277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.1666652883089,40.6140394535532"
+              Start="0,0"
+              End="89.1666652883089,33.1140394535532">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.3070197267766" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.3070197267766"
+                    Point2="0,20.3070197267766"
+                    Point3="4,20.3070197267766" />
+                  <mssgle:LineSegment
+                    End="85.1666652883089,20.3070197267766" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.1666652883089,20.3070197267766"
+                    Point2="89.1666652883089,20.3070197267766"
+                    Point3="89.1666652883089,24.3070197267766" />
+                  <mssgle:LineSegment
+                    End="89.1666652883089,33.1140394535532" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Src_to_Stg.Paths[Derived Column Output1]"
+          TopLeft="275.499997057021,157.614037251319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-134.166664617757,61.3508786740172"
+              Start="0,0"
+              End="-134.166664617757,53.8508786740172">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.6754393370086" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.6754393370086"
+                    Point2="0,30.6754393370086"
+                    Point3="-4,30.6754393370086" />
+                  <mssgle:LineSegment
+                    End="-130.166664617757,30.6754393370086" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-130.166664617757,30.6754393370086"
+                    Point2="-134.166664617757,30.6754393370086"
+                    Point3="-134.166664617757,34.6754393370086" />
+                  <mssgle:LineSegment
+                    End="-134.166664617757,53.8508786740172" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Src_to_Stg.Paths[Derived Column Output]"
+          TopLeft="511.874992372468,260.122811512163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-89.1249975692481,38.3508774505538"
+              Start="0,0"
+              End="-89.1249975692481,30.8508774505538">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-85.1249975692481,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-85.1249975692481,0"
+                    Point2="-89.1249975692481,0"
+                    Point3="-89.1249975692481,4" />
+                  <mssgle:LineSegment
+                    End="-89.1249975692481,30.8508774505538" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Src_to_Stg.Paths[ADO NET Destination Error Output]"
+          TopLeft="222.666665772597,240.298249258669">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="196.708327978229,-63.4561438667259"
+              Start="0,0"
+              End="189.208327978229,-63.4561438667259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="94.3541639891145,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.3541639891145,0"
+                    Point2="98.3541639891145,0"
+                    Point3="98.3541639891145,-4" />
+                  <mssgle:LineSegment
+                    End="98.3541639891145,-59.4561438667259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.3541639891145,-59.4561438667259"
+                    Point2="98.3541639891145,-63.4561438667259"
+                    Point3="102.354163989114,-63.4561438667259" />
+                  <mssgle:LineSegment
+                    End="189.208327978229,-63.4561438667259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.1397108641144,1,154.42890625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg\Flat File Source 1"
+          TopLeft="36.8749994505197,44.4736850476331" />
+        <EdgeLayout
+          Id="Package\DFT_Src_to_Stg.Paths[Flat File Source Output]"
+          TopLeft="118.208332783853,87.1403517142998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.291664273168,27.8070188703522"
+              Start="0,0"
+              End="157.291664273168,20.3070188703522">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.90350943517611" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.90350943517611"
+                    Point2="0,13.9035094351761"
+                    Point3="4,13.9035094351761" />
+                  <mssgle:LineSegment
+                    End="153.291664273168,13.9035094351761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="153.291664273168,13.9035094351761"
+                    Point2="157.291664273168,13.9035094351761"
+                    Point3="157.291664273168,17.9035094351761" />
+                  <mssgle:LineSegment
+                    End="157.291664273168,20.3070188703522" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_Src_to_Stg.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="192,42.6666666666667"
+          Id="Package\DFT_Src_to_Stg.EventHandlers[OnError]\EST_Update_Audit_Tbl"
+          TopLeft="414,173" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Src_to_Stg\AD_STG_contact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Src_to_Stg\AD_Error_Log">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
